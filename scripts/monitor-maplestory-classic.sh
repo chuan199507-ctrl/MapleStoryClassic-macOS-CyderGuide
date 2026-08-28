@@ -16,9 +16,9 @@ for ((i = 1; i <= samples; i++)); do
   ts="$(date '+%Y-%m-%d %H:%M:%S')"
   seconds=$((now - start))
 
-  game_pid="$(ps -axo pid,command | awk '/\/MapleStoryClassic\/Maplestory_Classic\.exe / && $0 !~ /--launch-exe/ {print $1; exit}')"
-  wine_pid="$(ps -axo pid,command | awk '/\.cyder\/runtime\/Engines\/wine-x86_64.*wineserver/ {print $1; exit}')"
-  grap_pid="$(ps -axo pid,command | awk '/grap-core64\.aes/ {print $1; exit}')"
+  game_pid="$(ps -axo pid,command | awk '/\/MapleStoryClassic\/Maplestory_Classic\.exe / && $0 !~ /--launch-exe/ && pid == "" {pid=$1} END {if (pid != "") print pid}')"
+  wine_pid="$(ps -axo pid,command | awk '/\.cyder\/runtime\/Engines\/wine-x86_64.*wineserver/ && pid == "" {pid=$1} END {if (pid != "") print pid}')"
+  grap_pid="$(ps -axo pid,command | awk '/grap-core64\.aes/ && pid == "" {pid=$1} END {if (pid != "") print pid}')"
 
   for item in "game:$game_pid" "wineserver:$wine_pid" "grap:$grap_pid"; do
     role="${item%%:*}"

@@ -400,6 +400,12 @@ grep -R "Graphics backend" "$HOME/Library/Application Support/Cyder/Logs" | tail
 
 預設會每 30 秒記錄一次，共 60 次，大約 30 分鐘。
 
+如果要掛網長時間監測，可以這樣跑 8 小時：
+
+```bash
+INTERVAL_SECONDS=30 SAMPLES=960 ./scripts/monitor-maplestory-classic.sh
+```
+
 監測內容包含：
 
 - `game`：遊戲本體
