@@ -114,22 +114,22 @@ Homebrew: /opt/homebrew/bin/brew
 
 ```text
 Cyder:
-  /Users/ctc/Applications/CyderLab/Cyder.app
+  $HOME/Applications/CyderLab/Cyder.app
 
 Beanfun OTP:
-  /Users/ctc/Applications/CyderLab/Beanfun OTP.app
+  $HOME/Applications/CyderLab/Beanfun OTP.app
 
 Cyder engine:
-  /Users/ctc/.cyder/runtime/Engines/wine-x86_64
+  $HOME/.cyder/runtime/Engines/wine-x86_64
 
 Cyder shared bottle:
-  /Users/ctc/Library/Application Support/Cyder/bottles/shared
+  $HOME/Library/Application Support/Cyder/bottles/shared
 
 MapleStory Classic client:
-  /Users/ctc/Games/MapleStoryClassic/Maplestory_Classic.exe
+  $HOME/Games/MapleStoryClassic/Maplestory_Classic.exe
 
 Performance CSV:
-  /Users/ctc/Library/Application Support/Cyder/Logs/perf/maplestory-classic-highspawn-20260828-224848.csv
+  $HOME/Library/Application Support/Cyder/Logs/perf/maplestory-classic-highspawn-20260828-224848.csv
 ```
 
 ## 下載與驗證流程
@@ -324,7 +324,7 @@ swift -e 'import Foundation; import AppKit; let url = URL(string: "NexonPlug://t
 實測：
 
 ```text
-/Users/ctc/Applications/CyderLab/Beanfun OTP.app
+$HOME/Applications/CyderLab/Beanfun OTP.app
 ```
 
 ## 啟動流程
@@ -343,10 +343,10 @@ swift -e 'import Foundation; import AppKit; let url = URL(string: "NexonPlug://t
 Cyder 實際 dry-run 顯示：
 
 ```text
-WINEPREFIX=/Users/ctc/Library/Application Support/Cyder/bottles/shared
-wine=/Users/ctc/.cyder/runtime/Engines/wine-x86_64/bin/wine
-exe=/Users/ctc/Games/MapleStoryClassic/Maplestory_Classic.exe
-cwd=/Users/ctc/Games/MapleStoryClassic
+WINEPREFIX=$HOME/Library/Application Support/Cyder/bottles/shared
+wine=$HOME/.cyder/runtime/Engines/wine-x86_64/bin/wine
+exe=$HOME/Games/MapleStoryClassic/Maplestory_Classic.exe
+cwd=$HOME/Games/MapleStoryClassic
 ```
 
 實際圖形後端：
@@ -378,7 +378,7 @@ for i in {1..60}; do
   ts=$(/bin/date '+%Y-%m-%d %H:%M:%S')
   seconds=$((now-start))
 
-  game_pid=$(ps -axo pid,command | awk '/\/Users\/ctc\/Games\/MapleStoryClassic\/Maplestory_Classic\.exe / && $0 !~ /--launch-exe/ {print $1; exit}')
+  game_pid=$(ps -axo pid,command | awk '/\/Games\/MapleStoryClassic\/Maplestory_Classic\.exe / && $0 !~ /--launch-exe/ {print $1; exit}')
   wine_pid=$(ps -axo pid,command | awk '/\.cyder\/runtime\/Engines\/wine-x86_64.*wineserver/ {print $1; exit}')
   grap_pid=$(ps -axo pid,command | awk '/grap-core64\.aes/ {print $1; exit}')
 
