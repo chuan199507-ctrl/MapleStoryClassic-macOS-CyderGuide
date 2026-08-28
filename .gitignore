@@ -1,0 +1,23 @@
+.DS_Store
+
+# Do not commit local game clients, Wine bottles, VM images, credentials, logs with launch arguments, or downloaded apps.
+Applications/
+Games/
+.cyder/
+Library/
+*.app/
+*.dmg
+*.zip
+*.7z
+*.rar
+*.exe
+*.dll
+*.pdb
+*.log
+*.trace
+*.crash
+*.vmwarevm/
+*.vmdk
+
+# Keep sanitized performance CSVs under data/.
+!data/*.csv
