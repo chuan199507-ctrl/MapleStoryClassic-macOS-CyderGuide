@@ -438,6 +438,52 @@ grap-core64.aes:
 
 ## 常見問題
 
+### 遊戲更新後怎麼辦？
+
+如果官方遊戲更新，建議先不要直接猜問題在哪裡。請依序做：
+
+```bash
+./scripts/update-game-client.sh
+```
+
+這個腳本會：
+
+- 使用 nxdl 檢查官方 manifest
+- 下載或更新 `$HOME/Games/MapleStoryClassic`
+- 修正 nxdl 可能產生的反斜線路徑
+- 驗證 `Maplestory_Classic.exe` 與必要資料夾是否存在
+
+這個腳本不會：
+
+- 啟動遊戲
+- 輸入 Beanfun 帳密
+- 處理 2FA
+- 修改或刪除 VMware Fusion VM
+- 刪除 Wine bottle / prefix
+- 停用 SIP 或降低 macOS 安全性
+
+如果更新後仍無法啟動，請再檢查：
+
+- Cyder 是否有新版 release
+- CitrusGate / Beanfun OTP 是否有新版 release
+- Beanfun 登入流程是否改變
+- Cyder log 是否出現新的錯誤
+
+可以把以下文字貼給熟悉這套流程的人協助檢查：
+
+```text
+《新楓之谷：經典版》更新後 macOS Cyder / CitrusGate 方案無法啟動。
+請協助檢查：
+1. 官方 CyderBits、CitrusGate、nxdl release 是否有新版。
+2. 不要碰 VMware Fusion VM，不要刪除既有 Wine environment。
+3. 檢查 nxdl manifest，必要時更新 $HOME/Games/MapleStoryClassic。
+4. 更新後修正反斜線路徑問題。
+5. 驗證 Maplestory_Classic.exe 與必要資料夾存在。
+6. 檢查 Beanfun OTP 的 ExecutablePath.maplestory-classic 是否正確。
+7. 如果需要登入、2FA、Gatekeeper、管理員密碼或 GUI 操作，請停下來讓使用者自己處理。
+8. 最後做 Cyder health check，並告知下一步如何開遊戲。
+```
+
 ### 一定要買 CrossOver 或 Parallels 嗎？
 
 本次實測不需要。使用的是 Cyder + CitrusGate / Beanfun OTP。

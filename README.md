@@ -90,6 +90,7 @@ nxdl 負責：
 此 repo 另外提供幾個輔助腳本：
 
 - [scripts/check-environment.sh](scripts/check-environment.sh)：檢查 Apple Silicon、macOS、Rosetta、Homebrew、Git。
+- [scripts/update-game-client.sh](scripts/update-game-client.sh)：半自動檢查並更新經典版客戶端。
 - [scripts/monitor-maplestory-classic.sh](scripts/monitor-maplestory-classic.sh)：監測遊戲、wineserver、grap 的 CPU/RAM。
 - [scripts/fix-nxdl-backslash-paths.sh](scripts/fix-nxdl-backslash-paths.sh)：修正 nxdl 下載後檔名含反斜線的情況。
 
@@ -107,7 +108,10 @@ nxdl 負責：
 ├── scripts/
 │   ├── check-environment.sh
 │   ├── fix-nxdl-backslash-paths.sh
-│   └── monitor-maplestory-classic.sh
+│   ├── monitor-maplestory-classic.sh
+│   └── update-game-client.sh
+├── tests/
+│   └── update-game-client-tests.sh
 └── data/
     └── highspawn-monitor-20260828.csv
 ```
