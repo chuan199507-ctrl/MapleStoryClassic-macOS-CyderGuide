@@ -79,7 +79,11 @@ nxdl 負責：
 
 ## 快速開始
 
-請先閱讀完整測試紀錄：
+一般玩家請先閱讀逐步教學：
+
+- [docs/player-guide.md](docs/player-guide.md)
+
+想看完整測試紀錄、版本驗證、監測數據與設計過程，再閱讀：
 
 - [docs/test-report.md](docs/test-report.md)
 
@@ -98,6 +102,7 @@ nxdl 負責：
 ├── README.md
 ├── LICENSE
 ├── docs/
+│   ├── player-guide.md
 │   └── test-report.md
 ├── scripts/
 │   ├── check-environment.sh
