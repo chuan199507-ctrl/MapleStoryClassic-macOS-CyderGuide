@@ -59,4 +59,23 @@ if find "$game_dir" -name '*\*' -print | grep . >/dev/null; then
 fi
 assert_contains "Update completed" "$tmp/update.out"
 
+echo "test: update backs up old normalized files when nxdl creates conflicting backslash paths"
+conflict_dir="$tmp/MapleStoryClassicConflict"
+mkdir -p "$conflict_dir/Maplestory_Classic_Data/Plugins/x86_64"
+printf 'old\n' > "$conflict_dir/Maplestory_Classic_Data/Plugins/x86_64/grap-core64.aes"
+export NXDL_CALL_LOG="$tmp/nxdl-conflict-calls.log"
+NXDL_PATH="$fake_nxdl" GAME_DIR="$conflict_dir" "$script" >"$tmp/conflict.out" 2>&1
+
+[[ "$(cat "$conflict_dir/Maplestory_Classic_Data/Plugins/x86_64/grap-core64.aes")" == "plugin" ]] ||
+  fail "new conflicting file was not moved into normalized path"
+if find "$conflict_dir" -name '*\*' -print | grep . >/dev/null; then
+  fail "conflicting backslash path was not removed"
+fi
+backup_dir="$(awk -F= '/^conflict_backup=/{print $2; exit}' "$tmp/conflict.out")"
+[[ -n "$backup_dir" && -f "$backup_dir/Maplestory_Classic_Data/Plugins/x86_64/grap-core64.aes" ]] ||
+  fail "old conflicting file was not backed up"
+[[ "$(cat "$backup_dir/Maplestory_Classic_Data/Plugins/x86_64/grap-core64.aes")" == "old" ]] ||
+  fail "backup does not contain old conflicting file"
+assert_contains "conflicts_backed_up=1" "$tmp/conflict.out"
+
 echo "all update-game-client tests passed"

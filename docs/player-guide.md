@@ -457,6 +457,7 @@ grap-core64.aes:
 - 使用 nxdl 檢查官方 manifest
 - 下載或更新 `$HOME/Games/MapleStoryClassic`
 - 修正 nxdl 可能產生的反斜線路徑
+- 若新檔與舊檔路徑衝突，會先把舊檔移到 `MapleStoryClassic-conflict-backup-*`
 - 驗證 `Maplestory_Classic.exe` 與必要資料夾是否存在
 
 這個腳本不會：
@@ -467,6 +468,18 @@ grap-core64.aes:
 - 修改或刪除 VMware Fusion VM
 - 刪除 Wine bottle / prefix
 - 停用 SIP 或降低 macOS 安全性
+
+如果更新後確認可以進遊戲，想清掉更新衝突備份來省空間，可以先查看：
+
+```bash
+./scripts/cleanup-update-backups.sh
+```
+
+確認備份資料夾不再需要後，再明確刪除：
+
+```bash
+./scripts/cleanup-update-backups.sh --delete
+```
 
 如果更新後仍無法啟動，請再檢查：
 
